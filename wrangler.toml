@@ -2,18 +2,11 @@ name = "groq-asr-proxy"
 main = "worker.js"
 compatibility_date = "2024-01-01"
 
-# 填入你的 Cloudflare account_id（控制台右侧或 wrangler whoami）
-account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
+# 填入你的 Cloudflare account_id
+account_id = "52972e07b1dc497da552d14034b80f52"
 
-[vars]
-# Groq API keys，逗号或换行分隔，多个自动轮换
-GROQ_KEYS = "gsk_xxx1,gsk_xxx2,gsk_xxx3"
-# 腾讯云 ASR 密钥（SentenceRecognition）。留空则禁用腾讯兜底
-TENCENT_SECRET_ID = ""
-TENCENT_SECRET_KEY = ""
-
-# ── 敏感项请用 secret 而非 vars（不进仓库）──
-#   npx wrangler secret put AUTH_TOKEN
-#   npx wrangler secret put TENCENT_SECRET_ID
-#   npx wrangler secret put TENCENT_SECRET_KEY
-# 注: 用 secret 时上面 [vars] 里对应行可删掉，secret 优先级更高
+# 以下敏感项均通过 wrangler secret put 注入（不写在此文件）:
+#   wrangler secret put GROQ_KEYS          # 多个逗号分隔
+#   wrangler secret put AUTH_TOKEN
+#   wrangler secret put TENCENT_SECRET_ID
+#   wrangler secret put TENCENT_SECRET_KEY
